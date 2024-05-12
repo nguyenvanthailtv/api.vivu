@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tour_languages', function (Blueprint $table) {
+        Schema::create('tour_language', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('tour_id');
-            $table->unsignedInteger('language_id');
+            $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('language_id')->constrained()->cascadeOnDelete();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

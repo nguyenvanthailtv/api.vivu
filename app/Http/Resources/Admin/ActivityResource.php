@@ -12,8 +12,15 @@ class ActivityResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+//            'coverImage' => $this->coverImage,
+//            'thumbImage' => $this->thumbImage,
+            'featureImage' => $this->featureImage
+        ];
     }
 }

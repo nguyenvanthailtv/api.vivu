@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -48,8 +50,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function postViews(): HasMany {
-        return $this->hasMany(PostView::class, 'user_id');
+    public function posts(): BelongsToMany {
+        return $this->belongsToMany(Post::class, 'post_view');
     }
 
     public function favorites(): HasMany {

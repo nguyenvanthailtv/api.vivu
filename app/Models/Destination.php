@@ -4,19 +4,43 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Destination extends Model
+/**
+ * @method static orderBy(mixed $orderByName, mixed $orderBy)
+ * @method static findOrFail($id)
+ * @method static create(array $all)
+ * @method static whereIn(string $string, mixed $ids)
+ */
+class Destination extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $table = 'destinations';
     protected $fillable = [
         'name',
-        'image'
+        'slug',
+        'status',
     ];
 
-    public function tourDestination():HasMany {
-        return $this->hasMany(TourDestination::class, 'destination_id');
+    public function registerMediaCollections(): void {
+        $this->addMediaCollection('featureImage')
+            ->singleFile();
+    }
+
+    public function featureImage(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getFirstMedia('featureImage') ? $this->getFirstMedia('featureImage')->getUrl() : ''
+        );
+    }
+
+
+    public function tours(): BelongsToMany {
+        return $this->belongsToMany(Tour::class, 'tour_destination');
     }
 }

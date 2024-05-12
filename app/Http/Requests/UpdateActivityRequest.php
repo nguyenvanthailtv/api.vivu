@@ -23,7 +23,8 @@ class UpdateActivityRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,svg,gif'
+            'slug' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,svg,gif',
         ];
     }
 }

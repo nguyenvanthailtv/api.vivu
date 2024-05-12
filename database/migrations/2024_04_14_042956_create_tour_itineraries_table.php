@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('tour_itineraries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('tour_id');
+            $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
             $table->tinyInteger('day');
             $table->string('title');
             $table->text('description')->nullable();
             $table->tinyInteger('order')->nullable();
-            $table->boolean('status')->default(true);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

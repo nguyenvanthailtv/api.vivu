@@ -26,8 +26,8 @@ return new class extends Migration
             $table->tinyInteger('max_age')->nullable();
             $table->tinyInteger('quantity')->nullable()->comment('số lượng người');
             $table->tinyInteger('duration')->nullable()->comment('số ngày đi');
-            $table->unsignedInteger('accommodation_id')->comment('id của bảng accommodation');
-            $table->boolean('status')->default(true);
+            $table->foreignId('accommodation_id')->constrained()->cascadeOnDelete();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

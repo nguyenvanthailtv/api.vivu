@@ -4,8 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * @method static create(array $all)
+ * @method static findOrFail($id)
+ * @method static whereIn(string $string, mixed $ids)
+ */
 class Tag extends Model
 {
     use HasFactory;
@@ -13,10 +18,12 @@ class Tag extends Model
     protected $table = 'tags';
 
     protected $fillable = [
-        'name'
+        'name',
+        'slug',
+        'status',
     ];
 
-    public function postTags(): HasMany {
-        return $this->hasMany(PostTag::class, 'tag_id');
+    public function posts(): BelongsToMany {
+        return $this->belongsToMany(Post::class, 'post_tag');
     }
 }

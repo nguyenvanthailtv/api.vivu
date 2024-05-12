@@ -16,7 +16,8 @@ class PostComment extends Model
         'post_id',
         'user_id',
         'description',
-        'parent_id'
+        'parent_id',
+        'status',
     ];
 
     public function user(): BelongsTo {

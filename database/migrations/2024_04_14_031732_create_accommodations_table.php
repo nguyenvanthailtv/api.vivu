@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('accommodations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->boolean('status')->default(true);
+            $table->string('name');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

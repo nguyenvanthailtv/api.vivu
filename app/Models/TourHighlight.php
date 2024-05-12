@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @method static createMany(mixed $tourHighlights)
+ */
 class TourHighlight extends Model
 {
     use HasFactory;
@@ -13,7 +16,7 @@ class TourHighlight extends Model
     protected $table = 'tour_highlights';
 
     protected $fillable = [
-        'title',
+        'name',
         'tour_id',
         'order',
         'status'

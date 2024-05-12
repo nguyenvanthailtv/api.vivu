@@ -13,7 +13,7 @@ class TourCost extends Model
     protected $table = 'tour_costs';
     protected $fillable = [
         'tour_id',
-        'title',
+        'name',
         'order',
         'status',
         'include'

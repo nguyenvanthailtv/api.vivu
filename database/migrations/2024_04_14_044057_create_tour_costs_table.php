@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('tour_costs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('tour_id');
-            $table->string('title');
+            $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
             $table->boolean('include')->nullable()->comment('có bao gồm hay không');
             $table->tinyInteger('order')->nullable();
-            $table->boolean('status')->default(true);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

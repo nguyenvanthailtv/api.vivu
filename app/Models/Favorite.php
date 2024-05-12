@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Favorite extends Model
 {
@@ -12,12 +13,12 @@ class Favorite extends Model
     protected $table = 'favorites';
 
     protected $fillable = [
-        'favoriteable_type',
-        'favoriteable_id',
+        'favorite_table_type',
+        'favorite_table_id',
         'user_id'
     ];
 
-    public function favoriteable()
+    public function favorite_table(): MorphTo
     {
         return $this->morphTo();
     }

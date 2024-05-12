@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image');
+            $table->string('slug');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

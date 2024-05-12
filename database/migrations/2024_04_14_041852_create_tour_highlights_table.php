@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('tour_highlights', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('tour_id')->comment('id của bảng tour');
-            $table->string('title');
+            $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
             $table->tinyInteger('order')->nullable();
-            $table->boolean('status')->default(true);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

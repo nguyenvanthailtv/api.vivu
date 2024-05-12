@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('tour_id');
+            $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('email');
-            $table->unsignedInteger('country_id');
+            $table->foreignId('country_id')->constrained()->cascadeOnDelete();
             $table->string('phone_number');
             $table->unsignedTinyInteger('adult');
             $table->unsignedTinyInteger('child');
             $table->string('title');
             $table->text('description');
-            $table->boolean('status')->default(true)->comment('false: Đã gửi || true: Đã phản hồi');
+            $table->tinyInteger('status')->default(1)->comment('1: Đã nhận || 2: Đã xem || 3: Đã phản hồi');
             $table->timestamps();
         });
     }

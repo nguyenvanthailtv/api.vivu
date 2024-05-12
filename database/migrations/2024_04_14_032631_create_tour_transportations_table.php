@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tour_transportations', function (Blueprint $table) {
+        Schema::create('tour_transportation', function (Blueprint $table) {
             $table->id();
-            $table->integer('tour_id')->comment('id của bảng tour');
-            $table->integer('transportation_id')->comment('id của bảng transportation');
-            $table->boolean('status')->default(true);
+            $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('transportation_id')->constrained()->cascadeOnDelete();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

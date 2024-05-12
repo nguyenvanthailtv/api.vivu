@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tour_images', function (Blueprint $table) {
+        Schema::create('meals', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->unsignedInteger('tour_id')->comment('id của bảng tour');
-            $table->boolean('status')->default(true);
+            $table->string('name')->comment('bữa ăn hỗ trợ');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tour_images');
+        Schema::dropIfExists('meals');
     }
 };
