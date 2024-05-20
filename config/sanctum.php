@@ -1,7 +1,7 @@
 <?php
 
 use Laravel\Sanctum\Sanctum;
-
+use Carbon\Carbon;
 return [
 
     /*
@@ -46,7 +46,8 @@ return [
     |
     */
 
-    'expiration' => null,
+    'expiration' => 1,
+    'rf_expiration' => 1440,
 
     /*
     |--------------------------------------------------------------------------

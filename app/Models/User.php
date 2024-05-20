@@ -11,6 +11,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PhpParser\Comment;
 
+/**
+ * @method static where(string $string, mixed $email)
+ * @method static create(array $all)
+ */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
